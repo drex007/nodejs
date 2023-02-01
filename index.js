@@ -4,7 +4,7 @@ const EventEmitter = require('events');
 
 class MyEmiiter extends EventEmitter { }
 
-//Initialize eventEmitter
+//Initialize eventEmitter comment
 const eventEmiiterObject = new MyEmiiter();
 eventEmiiterObject.on('log', (msg) => logEvent(msg));
 

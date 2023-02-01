@@ -1,0 +1,2 @@
+20230201	11:02:58	8f07d940-64b3-4020-ad7a-98ab0fd8483a	Log event is emitted from index
+20230201	11:03:29	0a35ce52-a87d-4434-a062-6ef62e1c473a	Log event is emitted from index
