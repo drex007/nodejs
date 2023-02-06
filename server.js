@@ -36,6 +36,6 @@ res.redirect('/new-page'); // Send a 302 by default, to send custom statuscode a
  // Route that renders a 404 page on route that does not exist,  Route Handlers
 app.get('/*', (req, res) =>{
 res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
-});
+});//
 
 app.listen(PORT, ()=> console.log(`server is runnung on port ${PORT}`))
