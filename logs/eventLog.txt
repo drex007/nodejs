@@ -2,3 +2,5 @@
 20230201	11:03:29	0a35ce52-a87d-4434-a062-6ef62e1c473a	Log event is emitted from index
 20230203	09:54:32	15307855-4442-436f-9959-a179c7eefbb0	Log event is emitted from index
 20230204	22:53:54	c5cb15d8-3328-4f50-a519-47818d9d0b40	Log event is emitted from index
+20230210	11:40:04	f18374d4-e9ce-42ba-bf0e-254993e13bb1	GET	 undefined	/
+20230210	11:40:04	1fc627ac-ce9e-45e1-8c79-8ffc17cce595	GET	 undefined	/css/style.css
