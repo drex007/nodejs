@@ -1,0 +1,2 @@
+20230210	13:15:33	87f5e24e-f14b-40e4-9d10-2ebee4d0e828	Not allowed by Cors	 undefined
+20230210	13:16:59	35e8d3e7-e7a4-4aac-b8bb-4da672fd938d	Error	 Not allowed by Cors

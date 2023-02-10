@@ -3,12 +3,34 @@ const express = require('express');
 const app = express();
 const http = require('http');
 const path = require('path');
+const errorHandler = require('./middleware/errorHandler');
+//Adding cors
+const cors = require('cors');
 const { logEvent, logger } = require('./middleware/logEvent');
+
 const PORT = process.env.PORT || 3500;
 
 //Custom middleware logger
 
 app.use(logger); // We modularize our logger by moving the function below into the LogEvent.js file and calling the function logger
+
+const whitelist = ["https://www.google.com", "http://localhost :3500"];
+
+const corsOptions = {
+    origin: (origin, callback) => {
+        if (whitelist.indexOf(origin) !== -1) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by Cors'));
+        }
+    },
+    optionsSuccessStatus: 200
+}
+
+
+
+//Cross origin resource sharing 
+app.use(cors(corsOptions));
 
 // app.use((req, res, next) => {
 //     logEvents(`${req.method}\t ${req.headers.origin}\t${req.url}`, 'reqLog.txt');
@@ -58,8 +80,11 @@ app.get('/old-page(.html)?', (req, res) => {
 });
 
 // Route that renders a 404 page on route that does not exist,  Route Handlers
+//You can use app.all('*') here for this 404 html rendering    
 app.get('/*', (req, res) => {
     res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
 });//
+
+app.use(errorHandler);
 
 app.listen(PORT, () => console.log(`server is runnung on port ${PORT}`)) 
