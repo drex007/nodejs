@@ -14,11 +14,11 @@ const PORT = process.env.PORT || 3500;
 
 app.use(logger); // We modularize our logger by moving the function below into the LogEvent.js file and calling the function logger
 
-const whitelist = ["https://www.google.com", "http://localhost :3500"];
+const whitelist = ["https://www.google.com", "http://localhost:3500"];
 
 const corsOptions = {
     origin: (origin, callback) => {
-        if (whitelist.indexOf(origin) !== -1) {
+        if (whitelist.indexOf(origin) !== -1 || !origin) {
             callback(null, true);
         } else {
             callback(new Error('Not allowed by Cors'));
@@ -39,13 +39,18 @@ app.use(cors(corsOptions));
 //     //For the built in custom middlew ares, You dont need a next function cause the next is areay built in the middlewre
 // })
 
-//Built in middleware to handle urlencoded data(i,e this middle ware is basically built for request coming into as form data)
+//Built in middleware to handle u rlencoded data(i,e this middle ware is basically built for request coming into as form data)
 app.use(express.urlencoded({ extended: false }));
+
+//Since we are using an express router to route our pages, we need to declare the routes directory here
+app.use('/subdir', require('./routes/subdir'));
 // This built in  middle ware is built for request coming in with data in form of json
 app.use(express.json());
 
 //This middleware helps to serve static files
 app.use(express.static(path.join(__dirname, '/public')));
+// You can also serve staic file in the subdir folder
+app.use('/subdir',express.static(path.join(__dirname, '/public'))); 
 
 
 
