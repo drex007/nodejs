@@ -6,6 +6,7 @@ const path = require('path');
 const errorHandler = require('./middleware/errorHandler');
 //Adding cors
 const cors = require('cors');
+const corsOptions = require('./config/corsOptions');
 const { logEvent, logger } = require('./middleware/logEvent');
 
 const PORT = process.env.PORT || 3500;
@@ -13,37 +14,13 @@ const PORT = process.env.PORT || 3500;
 //Custom middleware logger
 
 app.use(logger); // We modularize our logger by moving the function below into the LogEvent.js file and calling the function logger
-
-const whitelist = ["https://www.google.com", "http://localhost:3500"];
-
-const corsOptions = {
-    origin: (origin, callback) => {
-        if (whitelist.indexOf(origin) !== -1 || !origin) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by Cors'));
-        }
-    },
-    optionsSuccessStatus: 200
-}
-
-
-
+ 
 //Cross origin resource sharing 
 app.use(cors(corsOptions));
-
-// app.use((req, res, next) => {
-//     logEvents(`${req.method}\t ${req.headers.origin}\t${req.url}`, 'reqLog.txt');
-//     console.log(`${req.method} ${req.path}`);
-//     next(); // Why we are adding the next function is to ensure that the next request is called, without the next function the program automiatically stops here
-//     //For the built in custom middlew ares, You dont need a next function cause the next is areay built in the middlewre
-// })
 
 //Built in middleware to handle u rlencoded data(i,e this middle ware is basically built for request coming into as form data)
 app.use(express.urlencoded({ extended: false }));
 
-//Since we are using an express router to route our pages, we need to declare the routes directory here
-app.use('/subdir', require('./routes/subdir'));
 //Added an api route for employees
 app.use('/employees', require('./routes/api/employees'));
 // This built in  middle ware is built for request coming in with data in form of json
@@ -51,12 +28,6 @@ app.use(express.json());
 
 //This middleware helps to serve static files
 app.use(express.static(path.join(__dirname, '/public')));
-// You can also serve staic file in the subdir folder
-app.use('/subdir',express.static(path.join(__dirname, '/public'))); 
-
-
-
-
 
 app.get('^/$|index(.html)?', (req, res) => {
     // res.send('Hello world!!!!!!!!!!!!'); for sending text to the html page
@@ -94,4 +65,4 @@ app.get('/*', (req, res) => {
 
 app.use(errorHandler);
 
-app.listen(PORT, () => console.log(`server is runnung on port ${PORT}`)) 
+app.listen(PORT, () => console.log(`server is runnung on port ${PORT}`))  
