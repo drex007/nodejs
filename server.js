@@ -44,6 +44,8 @@ app.use(express.urlencoded({ extended: false }));
 
 //Since we are using an express router to route our pages, we need to declare the routes directory here
 app.use('/subdir', require('./routes/subdir'));
+//Added an api route for employees
+app.use('/employees', require('./routes/api/employees'));
 // This built in  middle ware is built for request coming in with data in form of json
 app.use(express.json());
 
