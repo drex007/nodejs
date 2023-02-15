@@ -4,6 +4,7 @@ const app = express();
 const http = require('http');
 const path = require('path');
 const errorHandler = require('./middleware/errorHandler');
+const bodyParser = require('body-parser');
 //Adding cors
 const cors = require('cors');
 const corsOptions = require('./config/corsOptions');
@@ -17,6 +18,8 @@ app.use(logger); // We modularize our logger by moving the function below into t
  
 //Cross origin resource sharing 
 app.use(cors(corsOptions));
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended:true}))
 
 //Built in middleware to handle u rlencoded data(i,e this middle ware is basically built for request coming into as form data)
 app.use(express.urlencoded({ extended: false }));
@@ -33,7 +36,7 @@ app.get('^/$|index(.html)?', (req, res) => {
     // res.send('Hello world!!!!!!!!!!!!'); for sending text to the html page
 
     // res.sendFile('./views/index.html', {root: __dirname})  // nother way to server a file to the server in nodejs and express
-    res.sendFile(path.join(__dirname, 'views', 'index.html')); // Another way to server a file to the server in nodejs and express
+    res.sendFile(path.jcoin(__dirname, 'views', 'index.html')); // Another way to server a file to the server in nodejs and express
 });
 
 app.get('/new-page', (req, res) => {

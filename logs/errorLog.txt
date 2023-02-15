@@ -18,3 +18,4 @@
 20230212	08:49:30	a4b1f92b-d318-4765-a17e-d2917d4993ab	Error	 Not allowed by Cors
 20230212	08:49:31	0387f664-9758-4cd4-bafe-d045045129cf	Error	 Not allowed by Cors
 20230212	08:49:31	5b4f75f8-a7b8-4dac-bcdb-24bbe9fe6d38	Error	 Not allowed by Cors
+20230215	08:34:16	527b4778-7738-49a7-ba06-21507b7ce832	Error	 Cannot set headers after they are sent to the client
