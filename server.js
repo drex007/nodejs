@@ -27,6 +27,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/register', require('./routes/register'));
 //Added an api route for employees
 app.use('/employees', require('./routes/api/employees'));
+app.use('/auth', require('./routes/auth'));
 // This built in  middle ware is built for request coming in with data in form of json
 app.use(express.json());
 
