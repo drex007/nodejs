@@ -24,6 +24,7 @@ app.use(bodyParser.urlencoded({extended:true}))
 //Built in middleware to handle u rlencoded data(i,e this middle ware is basically built for request coming into as form data)
 app.use(express.urlencoded({ extended: false }));
 
+app.use('/register', require('./routes/register'));
 //Added an api route for employees
 app.use('/employees', require('./routes/api/employees'));
 // This built in  middle ware is built for request coming in with data in form of json
