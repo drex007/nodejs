@@ -9,7 +9,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const corsOptions = require('./config/corsOptions');
 const { logEvent, logger } = require('./middleware/logEvent');
-
+const verifyJwT = require('./middleware/verifyJWT');
+const cookieParser = require('cookie-parser')
 const PORT = process.env.PORT || 3500;
 
 //Custom middleware logger
@@ -23,12 +24,16 @@ app.use(bodyParser.urlencoded({extended:true}))
 
 //Built in middleware to handle u rlencoded data(i,e this middle ware is basically built for request coming into as form data)
 app.use(express.urlencoded({ extended: false }));
+// built in middleWare for cookie
+app.use(cookieParser()) 
 
 app.use('/register', require('./routes/register'));
-//Added an api route for employees
-app.use('/employees', require('./routes/api/employees'));
+
 app.use('/auth', require('./routes/auth'));
 // This built in  middle ware is built for request coming in with data in form of json
+app.use(verifyJwT) // for route you want to protect should come under this verifyJWT  
+//Added an api route for employees
+app.use('/employees', require('./routes/api/employees'));
 app.use(express.json());
 
 //This middleware helps to serve static files

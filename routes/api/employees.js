@@ -3,13 +3,13 @@ const express = require('express');
 const router = express.Router();
 const path = require('path');
 const employeeController = require('../../controllers/employeesController');
-
+const verifyJWT = require('../../middleware/verifyJWT');
 // const id = data.employees[-1].id
 // console.log(id + 1);
 
 //Note you added an express  route point to this api route in the server.js file
 router.route('/')
-    .get(employeeController.getAllEmployees)
+    .get(verifyJWT, employeeController.getAllEmployees)
     .post(employeeController.createNewEmployee)
     .put(employeeController.updateEmployee)
     .delete(employeeController.deleteEmployee   );
