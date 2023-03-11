@@ -16,20 +16,22 @@ const PORT = process.env.PORT || 3500;
 //Custom middleware logger
 
 app.use(logger); // We modularize our logger by moving the function below into the LogEvent.js file and calling the function logger
- 
+
 //Cross origin resource sharing 
 app.use(cors(corsOptions));
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended:true}))
+app.use(bodyParser.urlencoded({ extended: true }))
 
 //Built in middleware to handle u rlencoded data(i,e this middle ware is basically built for request coming into as form data)
 app.use(express.urlencoded({ extended: false }));
 // built in middleWare for cookie
-app.use(cookieParser()) 
+app.use(cookieParser())
 
 app.use('/register', require('./routes/register'));
 
 app.use('/auth', require('./routes/auth'));
+app.use('/refresh', require('./routes/refresh'));
+app.use('/logout', require('./routes/logout'));
 // This built in  middle ware is built for request coming in with data in form of json
 app.use(verifyJwT) // for route you want to protect should come under this verifyJWT  
 //Added an api route for employees

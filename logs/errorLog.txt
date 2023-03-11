@@ -23,3 +23,5 @@
 20230215	10:17:31	b8b89335-c7c7-4e5e-80a6-ea38193723cd	SyntaxError	 Unexpected end of JSON input
 20230215	16:35:39	57f871cd-9504-453d-ba2e-710f8840fb98	Error	 Cannot set headers after they are sent to the client
 20230215	16:36:09	504000b7-c4de-4716-9e1e-1989c0a2b86d	Error	 Cannot set headers after they are sent to the client
+20230311	10:18:00	9c8b35b9-f660-47b1-84d8-3c5cca93bc3a	ReferenceError	 user is not defined
+20230311	10:18:02	1fec6097-7cbb-49d9-ba94-1b2898b40e47	ReferenceError	 user is not defined
